@@ -33,6 +33,52 @@ text-decoration: para modificar la decoración de la fuente
 
 */
 
+/* PARA ICONOS */
+
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?5rfldg');
+    src:  url('../fonts/icomoon.eot?5rfldg#iefix') format('embedded-opentype'),
+      url('../fonts/icomoon.ttf?5rfldg') format('truetype'),
+      url('../fonts/icomoon.woff?5rfldg') format('woff'),
+      url('../fonts/icomoon.svg?5rfldg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-menu:before {
+    content: "\e904";
+  }
+  .icon-instagram:before {
+    content: "\e903";
+  }
+  .icon-github:before {
+    content: "\e902";
+  }
+  .icon-twitter:before {
+    content: "\e901";
+  }
+  .icon-facebook:before {
+    content: "\e900";
+  }
+
+/*-----------------------------------*/
+
 h1{
     font-size: 40px;
     line-height: 1.5;
@@ -72,11 +118,13 @@ amarillo = #fddb00;
     justify-content: space-between;
     align-items: center;
     height: 70px;
+    flex-wrap: wrap;
 }
 
 .container{
-    width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
+    flex: 1; /* -> Con esto decimos que tome todo el ancho disponible que le dijimos arriba */
     display: inherit;
     justify-content: inherit;
     align-items: inherit;
@@ -134,6 +182,7 @@ figure{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .hero img{
@@ -154,6 +203,7 @@ figure{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .project-title{
@@ -179,11 +229,15 @@ figure{
 }
 
 .project-details{
-    width: 500px;
+    width: 50%;
 } 
 
 .project-imageContainer{
-    width: 500px;
+    width: 50%;
+}
+
+.project-imageContainer img{
+    max-width: 100%; /* -> Para hacer img responsive */
 }
 
 .event-list{
@@ -196,8 +250,8 @@ figure{
 }
 
 .event{
-    margin: 10px;
-    width: 480px;
+    margin: 1%;
+    width: 48%;
     border-radius: 10px;
     overflow: hidden;
     flex-shrink: 0; /* -> Para que elemento no pierda sus dimensiones */
@@ -238,6 +292,7 @@ figure{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .form-email input{
@@ -269,35 +324,29 @@ figure{
 }
 
 .social-link{
-    display: inline-block;
+    display: inline-flex;
     width: 50px;
     height: 50px;
     margin: 0 10px;
-    background-size: 50px 50px;
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 50%;
 }
 
-.social-link.twitter{
-    background-image: url('../images/twitter.svg');
+.social-link i{
+    color: #fff;
+    font-size: 2em;
+    padding: .27em;
 }
 
-.social-link.facebook{
-    background-image: url('../images/facebook.svg');
-}
-
-.social-link.github{
-    background-image: url('../images/github.svg');
-}
-
-.social-link.instagram{
-    background-image: url('../images/instagram.svg');
-}
 
 .footer{
     background-color: #1b2127;
     color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .footer img{
@@ -306,4 +355,246 @@ figure{
 
 .footer a{
     color: white;
+}
+
+.html-video{
+    width: 100%;
+    height: auto;
+    /* max-width: 100%; */
+}
+
+.youtube-video{
+    /* width: 100%;
+    height: auto; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flexible-video{
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%; /* -> Este paddin sale del resultado de la operación de heigth * 100 / width, heigth=valor que viene en iframe y width lo mismo*/
+    position: relative;
+}
+
+.burguer-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .8);
+    display: none;
+    text-align: center;
+    line-height: 40px;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    z-index: 10;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* 
+Media queries 
+
+@media media type and (condición) {
+
+}
+******
+@media screen and (max-width: 768px) {
+
+}
+->Todas las pantallas con un ancho inferior o igual a 768px cumplen esta condición.
+******
+media screen and (max-width: 768px) and (min-width: 480px){
+
+}
+->Todas las pantallas con un ancho de 480px hasta 768px cumplen esta condición.
+******
+Mobile First - min-width = desde ej. min-width: 480px (va desde 480px para arriba)
+Desktop First - max-width = hasta ej. max-width: 480px (va desde 480px para abajo)
+
+
+@media screen and (max-width: 768px){
+    body{
+        border: 10px solid green;
+    }
+}
+
+*/
+
+/* En desktop first(modelo utilizado en este proyecto) recomendable empezar por el tamaño mayor de viewport */
+
+@media screen and (max-width: 1023px) {
+    .container{
+        padding: 0 1em;
+    }
+    
+    .event-list-title{
+        margin-left: 0;
+    }
+
+    .hero{
+        height: auto;
+        position: relative;
+        overflow: hidden;
+        padding: 2em;
+    }
+    .hero-image{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+    h1{
+        font-size: 2em;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .portfolio{
+        padding: 0;
+    }
+} 
+
+@media screen and (max-width: 767px) {
+    h2{
+        font-size: 1.2em;
+        margin: .5em 0;
+    }
+
+    .burguer-button{
+        display: block;
+    }
+
+    .header{
+        display: block;
+        height: auto;
+    }
+    .header .logo{
+        text-align: center;
+    }
+    .header ol{
+        display: initial;
+    }
+    .header ol li{
+        height: 50px;
+    }
+    .header a{
+        justify-content: center;
+        height: 40px;
+        font-size: 2em;
+        text-decoration: underline;
+        margin-bottom: .5em;
+    }
+
+    .menu{
+        position: fixed;
+        background: rgba(231, 76, 60, .9);;
+        z-index: 9;
+        top: 0;
+        left: -100vw;
+        bottom: 0;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .3s;
+    }
+    .menu.is-active{
+        left: 0;
+    }
+
+    .project{
+        display: block;
+    }
+    .project-imageContainer {
+        width: auto;
+        text-align: center;
+    }
+    .project-details{
+        width: auto;
+        font-size: 16px;
+    }
+    .project-date, .project-course, .project-url{
+        margin: .3em 0;
+    }
+    .project-title{
+        font-size: 1.5em;
+        margin-bottom: .3em;
+    }
+    .project-url{
+        font-size: 1em;
+    }
+    .project-course{
+        font-size: .7em;
+    }
+    .project-date{
+        font-size: 1em;
+    }
+    .project-description{
+        font-size: 1em;
+    }
+
+    .event{
+        width: auto;
+        flex-shrink: initial;
+    }
+    .event img{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1{
+        font-size: 1.5em;
+        text-shadow: 1px 2px 2px #000;
+    }
+
+    .project-details{
+        font-size: 14px;
+    }
+
+    .event-details{
+        margin: -2em .5em .5em;
+        padding: 1em;
+    }
+
+    .contact{
+        height: auto;
+        padding: 1em 0;
+        display: block;
+        text-align: center;
+    }
+    .form-email button{
+        margin: 1em auto;
+    }
+    .form-email h3{
+        margin-top: 0;
+    }
+    .social-link{
+        width: 40px;
+        height: 40px;
+        border: none;
+    }
+    .footer{
+        display: block;
+        text-align: center;
+        border: 1px solid transparent;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    h1{
+        font-size: 1.2em;
+    }
+    .hero{
+        padding: 2em 1em;
+    }
 }
